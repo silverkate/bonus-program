@@ -9,6 +9,7 @@
     <param-name>contextConfigLocation</param-name>
     <param-value>
       /WEB-INF/config/spring-mvc.xml
+      /WEB-INF/config/spring-jdbc.xml
     </param-value>
   </context-param>
 

@@ -3,13 +3,12 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" isELIgnored="false" %>
 <html>
 <head>
-    <title>Getting Started: Serving Web Content</title>
+    <title>Home</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-    <link href="<spring:url value="/static/css/style.css"/>" rel="stylesheet"/>
+    <link href="<spring:url value="/static/css/main.css"/>" rel="stylesheet"/>
 </head>
 <body>
 <div id="base" class="">
-
     <div id="u1" class="ax_default button">
         <div id="u1_text" class="text ">
             <a href="<spring:url value="/"/>">Бизнес</a>

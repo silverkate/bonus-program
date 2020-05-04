@@ -3,12 +3,14 @@ body {
     position:relative;
     left:0;
     margin: 0 auto;
-    text-align:center;
+    text-align: left;
 }
+
 .form_sketch {
     border-color:transparent;
     background-color:transparent;
 }
+
 #base {
     position: absolute;
     z-index: 0;

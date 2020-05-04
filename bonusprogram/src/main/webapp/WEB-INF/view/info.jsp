@@ -3,9 +3,9 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" isELIgnored="false" %>
 <html>
 <head>
-    <title>Getting Started: Serving Web Content</title>
+    <title>Info</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-    <link href="<spring:url value="/static/css/style.css"/>" rel="stylesheet"/>
+    <link href="<spring:url value="/static/css/main.css"/>" rel="stylesheet"/>
 </head>
 <body>
 <div id="base" class="">
@@ -25,8 +25,9 @@
     <div id="u5" class="ax_default paragraph">
         <div id="u5_div" class=""></div>
         <div id="u5_text" class="text ">
-            <p><span>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean euismod bibendum laoreet. Proin gravida dolor sit amet lacus accumsan et viverra justo commodo. Proin sodales pulvinar sic tempor. Sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Nam fermentum, nulla luctus pharetra vulputate, felis tellus mollis orci, sed rhoncus pronin sapien nunc accuan eget.</span></p>
-            <p><span>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean euismod bibendum laoreet. Proin gravida dolor sit amet lacus accumsan et viverra justo commodo. Proin sodales pulvinar sic tempor. Sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Nam fermentum, nulla luctus pharetra vulputate, felis tellus mollis orci, sed rhoncus pronin sapien nunc accuan eget.</span></p>
+            <p><span><b>Как зарегистрироваться? </b><br/>Кликните кнопку Персональный и заполните Ваши данные. Придумайте пароль.</span></p>
+            <br/><br/>
+            <p><span><b>Ловите бонусы! </b><br/>При покупке в магазине назовите свой номер телефона. Это и есть Ваша бонусная карта. Бонус 3% от суммы покупки зачисляется на Ваш персональный счет.</span></p>
         </div>
     </div>
 
@@ -46,8 +47,9 @@
     <div id="u8" class="ax_default paragraph">
         <div id="u8_div" class=""></div>
         <div id="u8_text" class="text ">
-            <p><span>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean euismod bibendum laoreet. Proin gravida dolor sit amet lacus accumsan et viverra justo commodo. Proin sodales pulvinar sic tempor. Sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Nam fermentum, nulla luctus pharetra vulputate, felis tellus mollis orci, sed rhoncus pronin sapien nunc accuan eget.</span></p>
-            <p><span>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean euismod bibendum laoreet. Proin gravida dolor sit amet lacus accumsan et viverra justo commodo. Proin sodales pulvinar sic tempor. Sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Nam fermentum, nulla luctus pharetra vulputate, felis tellus mollis orci, sed rhoncus pronin sapien nunc accuan eget.</span></p>
+            <p><span><b>Где посмотреть мои бонусы? </b><br/>Персональный раздел. Здесь Вы увидите все Ваши покупки и бонусы.</span></p>
+            <br/>
+            <p><span><b>Как потратить? </b><br/>Совершая последующие покупки, попросите кассира оплатить покупку бонусами. А если будете делать оплату онлайн, не забудьте отметить “Потратить бонусы”. Сумма оплаты автоматически уменьшится на сумму Ваших бонусов.</span></p>
         </div>
     </div>
 </div>
