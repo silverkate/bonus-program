@@ -38,7 +38,7 @@
     </div>
 
     <div id="u7" class="ax_default image">
-        <img id="u7_img" class="img " src="https://d1icd6shlvmxi6.cloudfront.net/gsc/MEUGFL/c1/92/d7/c192d7334d5e42cbb77b305637a04292/images/info/u20.jpg?token=e6d9021ca15f4ebb4b3faab2623039c1e6afa420ae7b581a43197ff0c1c41b8e"/>
+        <img id="u7_img" class="img " src="<spring:url value="/static/img/cat.jpg"/>"/>
         <div id="u7_text" class="text " style="display:none; visibility: hidden">
             <p></p>
         </div>
