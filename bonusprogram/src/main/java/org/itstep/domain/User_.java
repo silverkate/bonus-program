@@ -33,7 +33,7 @@ public class User_ {
 
     @NotBlank
     @NonNull
-    @Length(max = 12)
+    @Length(max = 20)
     @Column(name = "phone", nullable = false)
     private String phone;
 
@@ -45,7 +45,7 @@ public class User_ {
 
     @NotBlank
     @NonNull
-    @Length(max = 50)
+    @Length(max = 60)
     @Column(name = "password", nullable = false)
     private String password;
 }

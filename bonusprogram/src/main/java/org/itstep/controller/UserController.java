@@ -1,7 +1,9 @@
 package org.itstep.controller;
 
+import lombok.extern.slf4j.Slf4j;
 import org.itstep.service.UserService;
 import org.itstep.service.dto.UserDto;
+import org.itstep.service.security.SecurityService;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.authority.AuthorityUtils;
 import org.springframework.security.core.context.SecurityContext;
@@ -15,13 +17,18 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
+@Slf4j
 @Controller
 public class UserController {
-    final UserService userService;
+    private final UserService userService;
 
-    public UserController(UserService userService) {
+    private final SecurityService securityService;
+
+    public UserController(UserService userService, SecurityService securityService) {
         this.userService = userService;
+        this.securityService = securityService;
     }
+
     @GetMapping(path = "/user/enter")
     public String ent() {
         return "user/enter";
@@ -40,25 +47,16 @@ public class UserController {
     @PostMapping("/user/register")
     public String register(@Validated @ModelAttribute UserDto userDto,
                            BindingResult bindingResult, Model model) {
-        userDto.setRole("ROLE_USER");
         if (bindingResult.hasErrors()) {
-            System.out.println(bindingResult);
+            log.error(bindingResult.toString());
             return "index";
         }
-        try {
-            userService.save(userDto);
-        } catch (Exception e) {
+        if (securityService.register(userDto) == null) {
+            userDto.setRole("ROLE_USER");
             userDto.setPassword("");
             model.addAttribute("errorLogin", "Try again");
             return "index";
         }
-        BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder();
-        userDto.setPassword(bCryptPasswordEncoder.encode(userDto.getPassword()));
-
-        SecurityContext emptyContext = SecurityContextHolder.createEmptyContext();
-        emptyContext.setAuthentication(new UsernamePasswordAuthenticationToken(userDto, userDto.getPassword(),
-                AuthorityUtils.createAuthorityList(userDto.getRole())));
-        SecurityContextHolder.setContext(emptyContext);
         return "redirect:/user/account";
     }
 }
