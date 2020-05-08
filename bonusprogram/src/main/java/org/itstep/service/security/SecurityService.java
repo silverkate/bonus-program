@@ -32,7 +32,7 @@ public class SecurityService {
             return null;
         }
 
-        SecurityContext emptyContext = SecurityContextHolder.createEmptyContext();
+        SecurityContext emptyContext = SecurityContextHolder.getContext(); //createEmptyContext();
         emptyContext.setAuthentication(new UsernamePasswordAuthenticationToken(userDto, userDto.getPassword(),
                 AuthorityUtils.createAuthorityList(userDto.getRole())));
         SecurityContextHolder.setContext(emptyContext);
