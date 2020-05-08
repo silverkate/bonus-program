@@ -35,7 +35,7 @@ public class Transaction {
     @NonNull
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "user_fk", nullable = false)
-    private User_ user;
+    private Person user;
 
     @NonNull
     @ManyToOne(fetch = FetchType.EAGER)

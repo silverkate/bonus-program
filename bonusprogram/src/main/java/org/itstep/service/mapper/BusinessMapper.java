@@ -8,7 +8,7 @@ import org.mapstruct.Mapping;
 @Mapper(componentModel = "spring")
 public interface BusinessMapper extends EntityMapper<BusinessDto, Business> {
     @Mapping(source = "id", target = "id")
-    Business toEntity(Business business);
+    Business toEntity(BusinessDto business);
 
-    BusinessDto toDto(BusinessDto businessDto);
+    BusinessDto toDto(Business businessDto);
 }

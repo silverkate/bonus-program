@@ -2,7 +2,7 @@ package org.itstep.service.dto;
 
 import lombok.*;
 import org.itstep.domain.Business;
-import org.itstep.domain.User_;
+import org.itstep.domain.Person;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.validation.constraints.NotBlank;
@@ -35,7 +35,7 @@ public class TransactionDto {
 
     @NotBlank
     @NonNull
-    private User_ user;
+    private Person user;
 
     @NotBlank
     @NonNull

@@ -34,6 +34,5 @@ public class UserDto {
     @NonNull
     private String password;
 
-
     private String role;
 }
