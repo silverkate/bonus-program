@@ -19,6 +19,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 public class UserController {
     final UserService userService;
 
+    public UserController(UserService userService) {
+        this.userService = userService;
+    }
     @GetMapping(path = "/user/enter")
     public String ent() {
         return "user/enter";
@@ -28,13 +31,10 @@ public class UserController {
     public String reg() {
         return "user/register";
     }
+
     @GetMapping(path = "/user/account")
     public String account() {
         return "user/account";
-    }
-
-    public UserController(UserService userService) {
-        this.userService = userService;
     }
 
     @PostMapping("/user/register")
@@ -47,16 +47,16 @@ public class UserController {
         }
         try {
             userService.save(userDto);
-        }catch (Exception e){
+        } catch (Exception e) {
             userDto.setPassword("");
-            model.addAttribute("errorLogin","Try again");
+            model.addAttribute("errorLogin", "Try again");
             return "index";
         }
         BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder();
         userDto.setPassword(bCryptPasswordEncoder.encode(userDto.getPassword()));
 
         SecurityContext emptyContext = SecurityContextHolder.createEmptyContext();
-        emptyContext.setAuthentication(new UsernamePasswordAuthenticationToken(userDto,userDto.getPassword(),
+        emptyContext.setAuthentication(new UsernamePasswordAuthenticationToken(userDto, userDto.getPassword(),
                 AuthorityUtils.createAuthorityList(userDto.getRole())));
         SecurityContextHolder.setContext(emptyContext);
         return "redirect:/user/account";

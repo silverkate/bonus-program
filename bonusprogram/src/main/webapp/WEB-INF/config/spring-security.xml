@@ -4,21 +4,29 @@
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/security https://www.springframework.org/schema/security/spring-security.xsd">
 
     <sec:http auto-config="true" use-expressions="true">
-        <sec:csrf disabled="true"></sec:csrf>
-        <sec:intercept-url pattern="/info/**" access="isAnonymous()"/>
-        <sec:intercept-url pattern="/user/**" access="isAnonymous()"/>
-        <sec:intercept-url pattern="/business/**" access="isAnonymous()"/>
+        <!--        <sec:csrf disabled="true"/>-->
+        <!--        <sec:intercept-url pattern="/info/**" access="isAnonymous()"/>-->
+        <!--        <sec:intercept-url pattern="/user/**" access="isAnonymous()"/>-->
+        <!--        <sec:intercept-url pattern="/business/**" access="isAnonymous()"/>-->
         <sec:intercept-url pattern="/user/account/**" access="hasAnyRole('ROLE_USER')"/>
         <sec:intercept-url pattern="/business/account/**" access="hasAnyRole('ROLE_BUSINESS')"/>
         <sec:intercept-url pattern="/**" access="permitAll()"/>
 
-        <sec:logout logout-url="/logout" logout-success-url="/" delete-cookies="true"
-                    invalidate-session="true"/>
-        <sec:remember-me remember-me-parameter="rememberMe" key="rememberMe"></sec:remember-me>
-        <sec:form-login login-page="/" default-target-url="/account" login-processing-url="/login"
-                        username-parameter="login"
-                        password-parameter="password"
-                        authentication-failure-url="/?error=notentry"/>
+        <sec:logout
+                logout-url="/logout"
+                logout-success-url="/"
+                delete-cookies="true"
+                invalidate-session="true"/>
+        <sec:remember-me
+                remember-me-parameter="rememberMe"
+                key="rememberMe"/>
+        <sec:form-login
+                login-page="/user/enter"
+                default-target-url="/account"
+                login-processing-url="/login"
+                username-parameter="login"
+                password-parameter="password"
+                authentication-failure-url="/?error=notentry"/>
     </sec:http>
 
     <sec:authentication-manager>
@@ -26,5 +34,5 @@
         </sec:authentication-provider>
     </sec:authentication-manager>
 
-    <bean class="org.springframework.security.web.access.expression.DefaultWebSecurityExpressionHandler"></bean>
+    <bean class="org.springframework.security.web.access.expression.DefaultWebSecurityExpressionHandler"/>
 </beans>

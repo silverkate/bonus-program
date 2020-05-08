@@ -48,6 +48,4 @@ public class User_ {
     @Length(max = 50)
     @Column(name = "password", nullable = false)
     private String password;
-
-
 }
