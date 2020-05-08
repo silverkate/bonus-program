@@ -59,7 +59,7 @@ public class Person implements UserDetails{
 
     @Override
     public String getUsername() {
-        return getPassword();
+        return phone;
     }
 
     @Override
