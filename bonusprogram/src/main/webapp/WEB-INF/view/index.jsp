@@ -17,7 +17,7 @@
 
     <div id="u2" class="ax_default button">
         <div id="u2_text" class="text ">
-            <a href="<spring:url value="/"/>">Персональный</a>
+            <a href="<spring:url value="/user/enter"/>">Персональный</a>
         </div>
     </div>
 
@@ -33,7 +33,6 @@
             <a href="<spring:url value="/info"/>">Узнать больше</a>
         </div>
     </div>
-
 </div>
 </body>
 </html>

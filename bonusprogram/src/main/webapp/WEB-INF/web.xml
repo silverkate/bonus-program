@@ -10,6 +10,7 @@
     <param-value>
       /WEB-INF/config/spring-mvc.xml
       /WEB-INF/config/spring-jdbc.xml
+      /WEB-INF/config/spring-security.xml
     </param-value>
   </context-param>
 
@@ -34,6 +35,15 @@
     <url-pattern>/</url-pattern>
   </servlet-mapping>
 
+  <servlet>
+    <servlet-name>h2console</servlet-name>
+    <servlet-class>org.h2.server.web.WebServlet</servlet-class>
+  </servlet>
+
+  <servlet-mapping>
+    <servlet-name>h2console</servlet-name>
+    <url-pattern>/h2console/*</url-pattern>
+  </servlet-mapping>
 
   <filter>
     <filter-name>encodingFilter</filter-name>

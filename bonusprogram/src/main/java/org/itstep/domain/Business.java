@@ -31,8 +31,8 @@ public class Business {
     @NotBlank
     @NonNull
     @Length(max = 12)
-    @Column(name = "phone_number", nullable = false)
-    private String phoneNumber;
+    @Column(name = "phone", nullable = false)
+    private String phone;
 
     @NotBlank
     @NonNull

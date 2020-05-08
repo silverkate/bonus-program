@@ -12,13 +12,13 @@
 
     <div id="u1" class="ax_default button">
         <div id="u1_text" class="text ">
-            <a href="info">Бизнес</a>
+            <a href="<spring:url value="/business/enter"/>">Бизнес</a>
         </div>
     </div>
 
     <div id="u2" class="ax_default button">
         <div id="u2_text" class="text ">
-            <a href="info">Персональный</a>
+            <a href="<spring:url value="/user/enter"/>">Персональный</a>
         </div>
     </div>
 
