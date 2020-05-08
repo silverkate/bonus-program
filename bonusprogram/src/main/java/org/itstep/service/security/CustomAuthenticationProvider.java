@@ -17,12 +17,12 @@ import org.springframework.stereotype.Service;
 public class CustomAuthenticationProvider implements AuthenticationProvider {
 
     final CustomDetailsService customDetailsService;
-    final PasswordEncoder bCryptPasswordEncoder;
+    final PasswordEncoder passwordEncoder;
 
     @Autowired
-    public CustomAuthenticationProvider(CustomDetailsService customDetailsService) {
+    public CustomAuthenticationProvider(CustomDetailsService customDetailsService, PasswordEncoder passwordEncoder) {
         this.customDetailsService = customDetailsService;
-        this.bCryptPasswordEncoder = new BCryptPasswordEncoder();
+        this.passwordEncoder = passwordEncoder;
     }
 
     @Override
@@ -32,7 +32,7 @@ public class CustomAuthenticationProvider implements AuthenticationProvider {
         UserDetails userDetails = null;
         try {
             userDetails = customDetailsService.loadUserByUsername(username);
-            if(!bCryptPasswordEncoder.matches(password,userDetails.getPassword())){
+            if(!passwordEncoder.matches(password,userDetails.getPassword())){
                 throw new BadCredentialsException("User is not found");
             }
         } catch (Exception e) {

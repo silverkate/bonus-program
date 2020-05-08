@@ -43,5 +43,8 @@
         </sec:authentication-provider>
     </sec:authentication-manager>
 
+    <bean class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder"
+          id="passwordEncoder" />
+
     <bean class="org.springframework.security.web.access.expression.DefaultWebSecurityExpressionHandler"/>
 </beans>
