@@ -29,9 +29,9 @@ public class BusinessServiceImpl implements BusinessService {
     @Override
     public BusinessDto save(BusinessDto dto) {
         log.debug("Request to save Business : {}", dto);
-        Business student = businessMapper.toEntity(dto);
-        student = businessRepository.save(student);
-        return businessMapper.toDto(student);
+        Business business = businessMapper.toEntity(dto);
+        business = businessRepository.save(business);
+        return businessMapper.toDto(business);
     }
 
     @Override

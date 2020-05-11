@@ -31,8 +31,15 @@
                 key="rememberMe"/>
         <sec:form-login
                 login-page="/user/enter"
-                default-target-url="/account"
-                login-processing-url="/login"
+                default-target-url="/user/account"
+                login-processing-url="/user/login"
+                username-parameter="login"
+                password-parameter="password"
+                authentication-failure-url="/?error=notentry"/>
+        <sec:form-login
+                login-page="/business/enter"
+                default-target-url="/business/account"
+                login-processing-url="/business/login"
                 username-parameter="login"
                 password-parameter="password"
                 authentication-failure-url="/?error=notentry"/>

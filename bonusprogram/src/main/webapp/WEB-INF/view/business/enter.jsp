@@ -1,6 +1,8 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" isELIgnored="false" %>
+<%@ taglib prefix="secure" uri="http://www.springframework.org/security/tags" %>
+
 <html>
 <head>
     <title>Enter Business</title>
@@ -17,16 +19,17 @@
     <div>
         <h4>Sign in</h4>
         <div>
-            <label>Phone<input name="custom_phone" required /></label>
+            <label>Phone<input name="login" required /></label>
         </div>
         <div>
-            <label>Password<input name="custom_password"  required type="password"/></label>
+            <label>Password<input name="password"  required type="password"/></label>
             <secure:csrfInput/>
         </div>
     </div>
     <div>
         <a type="submit" href="#!" >Cancel</a>
         <button type="submit" href="<spring:url value="login"/>">Submit</button>
+
     </div>
 </form>
 <form>

@@ -9,4 +9,10 @@ public class BusinessController {
     public String ent() {
         return "business/enter";
     }
+
+    @GetMapping(path = "/business/account")
+    public String account() {
+        return "business/account";
+    }
+
 }

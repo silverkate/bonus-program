@@ -32,6 +32,7 @@ public class Transaction {
     @Column(name = "final_sum", nullable = false)
     private Integer finalSum;
 
+
     @NonNull
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "user_fk", nullable = false)

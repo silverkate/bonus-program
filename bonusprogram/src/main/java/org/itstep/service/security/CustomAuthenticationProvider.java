@@ -29,7 +29,7 @@ public class CustomAuthenticationProvider implements AuthenticationProvider {
     public Authentication authenticate(Authentication authentication) throws AuthenticationException {
         String username = authentication.getPrincipal().toString();
         String password = authentication.getCredentials().toString();
-        UserDetails userDetails = null;
+        UserDetails userDetails;
         try {
             userDetails = customDetailsService.loadUserByUsername(username);
             if(!passwordEncoder.matches(password,userDetails.getPassword())){

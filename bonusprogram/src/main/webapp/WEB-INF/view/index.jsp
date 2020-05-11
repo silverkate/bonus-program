@@ -11,7 +11,7 @@
 <div id="base" class="">
     <div id="u1" class="ax_default button">
         <div id="u1_text" class="text ">
-            <a href="<spring:url value="/"/>">Бизнес</a>
+            <a href="<spring:url value="/business/enter"/>">Бизнес</a>
         </div>
     </div>
 
