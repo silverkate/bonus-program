@@ -12,6 +12,24 @@
         <sec:intercept-url pattern="/h2console/**" access="permitAll()"/>
     </sec:http>
 
+    <sec:http pattern="/business/**" use-expressions="true" auto-config="true">
+        <sec:logout
+                logout-url="/logout"
+                logout-success-url="/"
+                delete-cookies="true"
+                invalidate-session="true"/>
+        <sec:remember-me
+                remember-me-parameter="rememberMe"
+                key="rememberMe"/>
+        <sec:form-login
+                login-page="/business/enter"
+                default-target-url="/business/account"
+                login-processing-url="/business/login"
+                username-parameter="login"
+                password-parameter="password"
+                authentication-failure-url="/?error=notentry"/>
+    </sec:http>
+
     <sec:http auto-config="true" use-expressions="true">
         <!--        <sec:csrf disabled="true"/>-->
         <!--        <sec:intercept-url pattern="/info/**" access="isAnonymous()"/>-->
@@ -33,13 +51,6 @@
                 login-page="/user/enter"
                 default-target-url="/user/account"
                 login-processing-url="/user/login"
-                username-parameter="login"
-                password-parameter="password"
-                authentication-failure-url="/?error=notentry"/>
-        <sec:form-login
-                login-page="/business/enter"
-                default-target-url="/business/account"
-                login-processing-url="/business/login"
                 username-parameter="login"
                 password-parameter="password"
                 authentication-failure-url="/?error=notentry"/>
