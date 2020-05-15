@@ -62,7 +62,8 @@ public class InitDatabase {
         // Init business
         BusinessDto businessDto = new BusinessDto("displayName", "officialName", "0909990909", "CEOName", "email@email.com", "kindOfActivity", "code1", "code2", "account", "pass");
         businessDto.setRole("ROLE_BUSINESS");
-        businessService.save(businessDto);
+        securityService.registerBusiness(businessDto);
+        //businessService.save(businessDto);
 
         //Init transactions
         /*TransactionDto transactionDto1 = new TransactionDto(LocalDate.now(), 100, 5, 100, userMapper.toEntity(userDto), businessMapper.toEntity(businessDto));

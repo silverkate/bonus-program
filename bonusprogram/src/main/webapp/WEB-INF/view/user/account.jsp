@@ -18,7 +18,7 @@
     </form>
 </div>
 <div>
-    <h4>${firstName}</h4>
+    <h4>Welcome, ${firstName}</h4>
 </div>
 
 </body>

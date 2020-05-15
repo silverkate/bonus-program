@@ -13,6 +13,13 @@
     </sec:http>
 
     <sec:http pattern="/business/**" use-expressions="true" auto-config="true">
+        <sec:intercept-url pattern="/user/account/**" access="hasAnyRole('ROLE_USER')"/>
+        <sec:intercept-url pattern="/business/account/**" access="hasAnyRole('ROLE_BUSINESS')"/>
+        <sec:intercept-url pattern="/business/addTransaction/**" access="hasAnyRole('ROLE_BUSINESS')"/>
+        <sec:intercept-url pattern="/business/payments/**" access="hasAnyRole('ROLE_BUSINESS')"/>
+        <sec:intercept-url pattern="/business/users/**" access="hasAnyRole('ROLE_BUSINESS')"/>
+        <sec:intercept-url pattern="/**" access="permitAll()"/>
+
         <sec:logout
                 logout-url="/logout"
                 logout-success-url="/"
@@ -31,12 +38,11 @@
     </sec:http>
 
     <sec:http auto-config="true" use-expressions="true">
-        <!--        <sec:csrf disabled="true"/>-->
-        <!--        <sec:intercept-url pattern="/info/**" access="isAnonymous()"/>-->
-        <!--        <sec:intercept-url pattern="/user/**" access="isAnonymous()"/>-->
-        <!--        <sec:intercept-url pattern="/business/**" access="isAnonymous()"/>-->
         <sec:intercept-url pattern="/user/account/**" access="hasAnyRole('ROLE_USER')"/>
         <sec:intercept-url pattern="/business/account/**" access="hasAnyRole('ROLE_BUSINESS')"/>
+        <sec:intercept-url pattern="/business/addTransaction/**" access="hasAnyRole('ROLE_BUSINESS')"/>
+        <sec:intercept-url pattern="/business/payments/**" access="hasAnyRole('ROLE_BUSINESS')"/>
+        <sec:intercept-url pattern="/business/users/**" access="hasAnyRole('ROLE_BUSINESS')"/>
         <sec:intercept-url pattern="/**" access="permitAll()"/>
 
         <sec:logout

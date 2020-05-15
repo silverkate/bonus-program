@@ -37,11 +37,9 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public Page<UserDto> findAll(Pageable pageable) {
-        return null;
-        /*
         log.debug("Request to get all Users");
         return userRepository.findAll(pageable)
-                .map(userMapper::toDto);*/
+                .map(userMapper::toDto);
     }
 
 

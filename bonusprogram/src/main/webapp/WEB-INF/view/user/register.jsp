@@ -18,7 +18,7 @@
             <label>Last Name<input name="lastName" required /></label>
         </div>
         <div>
-            <label>Phone<input name="phone" required /></label>
+            <label>Phone<input type="tel" name="phone" pattern="[0-9]{10}" required /></label>
         </div>
         <div>
             <label>Email<input name="email" required /></label>
