@@ -1,12 +1,13 @@
 package org.itstep.controller;
 
+import lombok.extern.slf4j.Slf4j;
+import org.itstep.repositories.UserRepository;
+import org.itstep.service.TransactionService;
 import org.itstep.service.UserService;
 import org.itstep.service.dto.UserDto;
-import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-import org.springframework.security.core.authority.AuthorityUtils;
-import org.springframework.security.core.context.SecurityContext;
+import org.itstep.service.security.SecurityService;
 import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -15,9 +16,20 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
+@Slf4j
 @Controller
 public class UserController {
-    final UserService userService;
+    private final UserService userService;
+    private final TransactionService transactionService;
+    private final SecurityService securityService;
+    private final UserRepository userRepository;
+
+    public UserController(UserService userService, SecurityService securityService, TransactionService transactionService, UserRepository userRepository) {
+        this.userService = userService;
+        this.securityService = securityService;
+        this.transactionService = transactionService;
+        this.userRepository = userRepository;
+    }
 
     @GetMapping(path = "/user/enter")
     public String ent() {
@@ -28,37 +40,35 @@ public class UserController {
     public String reg() {
         return "user/register";
     }
-    @GetMapping(path = "/user/account")
-    public String account() {
-        return "user/account";
-    }
 
-    public UserController(UserService userService) {
-        this.userService = userService;
+    @GetMapping(path = "/user/account")
+    public String account(Model model) {
+        Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        if(principal instanceof UserDetails){
+            String username = ((UserDetails)principal).getUsername();
+            model.addAttribute("firstName", userRepository.findUserByPhone(username).getFirstName());
+            model.addAttribute("lastName", userRepository.findUserByPhone(username).getLastName());
+        }
+        return "user/account";
     }
 
     @PostMapping("/user/register")
     public String register(@Validated @ModelAttribute UserDto userDto,
                            BindingResult bindingResult, Model model) {
-        userDto.setRole("ROLE_USER");
         if (bindingResult.hasErrors()) {
-            System.out.println(bindingResult);
-            return "index";
+            log.error(bindingResult.toString());
+            return "/user/register";
         }
-        try {
-            userService.save(userDto);
-        }catch (Exception e){
+        if (securityService.register(userDto) == null) {
+            userDto.setRole("ROLE_USER");
             userDto.setPassword("");
-            model.addAttribute("errorLogin","Try again");
+            model.addAttribute("errorLogin", "Try again");
             return "index";
         }
-        BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder();
-        userDto.setPassword(bCryptPasswordEncoder.encode(userDto.getPassword()));
-
-        SecurityContext emptyContext = SecurityContextHolder.createEmptyContext();
-        emptyContext.setAuthentication(new UsernamePasswordAuthenticationToken(userDto,userDto.getPassword(),
-                AuthorityUtils.createAuthorityList(userDto.getRole())));
-        SecurityContextHolder.setContext(emptyContext);
         return "redirect:/user/account";
     }
+
+
+
+
 }

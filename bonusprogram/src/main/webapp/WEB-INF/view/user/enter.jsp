@@ -1,5 +1,6 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="secure" uri="http://www.springframework.org/security/tags" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" isELIgnored="false" %>
 <html>
 <head>
@@ -13,15 +14,15 @@
     <div>
         <h4>Sign in</h4>
         <div>
-            <label>Phone<input name="custom_phone" required /></label>
+            <label>Phone<input name="login" required /></label>
         </div>
         <div>
-            <label>Password<input name="custom_password"  required type="password"/></label>
+            <label>Password<input name="password"  required type="password"/></label>
             <secure:csrfInput/>
         </div>
     </div>
     <div>
-        <a type="submit" href="#!" >Cancel</a>
+        <a type="submit" href="<spring:url value="/"/>" >Cancel</a>
         <button type="submit" href="<spring:url value="login"/>">Submit</button>
     </div>
 </form>
@@ -30,6 +31,10 @@
         <a href="<spring:url value="/user/register"/>">Register</a>
     </div>
 </div>
-
+<div>
+    <c:if test="${param.error == 'notentry'}">
+        Login and/or password are incorrect.
+    </c:if>
+</div>
 </body>
 </html>

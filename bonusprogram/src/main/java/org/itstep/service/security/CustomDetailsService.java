@@ -1,7 +1,7 @@
 package org.itstep.service.security;
 
 
-import org.itstep.domain.User_;
+import org.itstep.domain.Person;
 import org.itstep.domain.Business;
 import org.itstep.repositories.UserRepository;
 import org.itstep.repositories.BusinessRepository;
@@ -24,12 +24,12 @@ public class CustomDetailsService implements UserDetailsService {
     @Override
     public UserDetails loadUserByUsername(String userName) throws UsernameNotFoundException {
 
-        User_ user = userRepository.findUserByPhone(userName);
+        Person user = userRepository.findUserByPhone(userName);
         Business business = businessRepository.findUserByPhone(userName);
         if(user != null){
-            return (UserDetails) userRepository.findUserByPhone(userName);
+            return userRepository.findUserByPhone(userName);
         }else if(business != null){
-            return (UserDetails) businessRepository.findUserByPhone(userName);
+            return businessRepository.findUserByPhone(userName);
         }else {
             return new User("admin","$2a$10$qxcV1Da7Hnfi5vv/eRp8HuYKlmiw6NBaPBJJff5vDkFR.K1fiBoBm",
                     AuthorityUtils.createAuthorityList("ROLE_ADMIN"));

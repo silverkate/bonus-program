@@ -1,9 +1,9 @@
 package org.itstep.repositories;
 
-import org.itstep.domain.User_;
-import org.springframework.data.repository.CrudRepository;
+import org.itstep.domain.Person;
+import org.springframework.data.jpa.repository.JpaRepository;
 
 
-public interface UserRepository extends CrudRepository<User_, Integer> {
-    User_ findUserByPhone(String userName);
+public interface UserRepository extends JpaRepository<Person, Integer> {
+    Person findUserByPhone(String userName);
 }

@@ -1,7 +1,7 @@
 package org.itstep.service.impl;
 
 import lombok.extern.slf4j.Slf4j;
-import org.itstep.domain.User_;
+import org.itstep.domain.Person;
 import org.itstep.repositories.UserRepository;
 import org.itstep.service.UserService;
 import org.itstep.service.dto.UserDto;
@@ -30,18 +30,16 @@ public class UserServiceImpl implements UserService {
     @Override
     public UserDto save(UserDto dto) {
         log.debug("Request to save User : {}", dto);
-        User_ user = userMapper.toEntity(dto);
+        Person user = userMapper.toEntity(dto);
         user = userRepository.save(user);
         return userMapper.toDto(user);
     }
 
     @Override
     public Page<UserDto> findAll(Pageable pageable) {
-        return null;
-        /*
         log.debug("Request to get all Users");
         return userRepository.findAll(pageable)
-                .map(userMapper::toDto);*/
+                .map(userMapper::toDto);
     }
 
 
@@ -58,3 +56,4 @@ public class UserServiceImpl implements UserService {
         userRepository.deleteById(id);
     }
 }
+

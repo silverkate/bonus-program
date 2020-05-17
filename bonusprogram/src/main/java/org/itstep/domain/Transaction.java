@@ -32,10 +32,11 @@ public class Transaction {
     @Column(name = "final_sum", nullable = false)
     private Integer finalSum;
 
+
     @NonNull
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "user_fk", nullable = false)
-    private User_ user;
+    private Person user;
 
     @NonNull
     @ManyToOne(fetch = FetchType.EAGER)

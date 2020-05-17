@@ -37,7 +37,9 @@ public class TransactionServiceImpl implements TransactionService {
 
     @Override
     public Page<TransactionDto> findAll(Pageable pageable) {
-        return null;
+        log.debug("Request to get all Transactions");
+        return transactionRepository.findAll(pageable)
+                .map(transactionMapper::toDto);
     }
 
 

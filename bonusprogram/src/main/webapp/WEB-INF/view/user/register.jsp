@@ -1,6 +1,7 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib prefix="secure" uri="http://www.springframework.org/security/tags" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" isELIgnored="false" %>
 <html>
 <head>
@@ -17,7 +18,7 @@
             <label>Last Name<input name="lastName" required /></label>
         </div>
         <div>
-            <label>Phone<input name="phone" required /></label>
+            <label>Phone<input type="tel" name="phone" pattern="[0-9]{10}" required /></label>
         </div>
         <div>
             <label>Email<input name="email" required /></label>
