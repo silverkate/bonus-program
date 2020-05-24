@@ -19,7 +19,31 @@
 </div>
 <div>
     <h4>Welcome, ${firstName}</h4>
+    <h4>Бонусы ${bonus}</h4>
 </div>
-
+<div class="table-wrapper">
+    <table class="fl-table">
+        <thead>
+        <tr>
+            <th></th>
+            <th>Дата</th>
+            <th>Сумма</th>
+            <th>Добавленный бонус</th>
+            <th>Списанный бонус</th>
+        </tr>
+        </thead>
+        <tbody>
+        <c:forEach items="${transactions}" var="t">
+            <tr>
+                <td>${t.id}</td>
+                <td>${t.date}</td>
+                <td>${t.finalSum}</td>
+                <td>${t.addedBonus}</td>
+                <td>${t.chargedBonus}</td>
+            </tr>
+        </c:forEach>
+        </tbody>
+    </table>
+</div>
 </body>
 </html>

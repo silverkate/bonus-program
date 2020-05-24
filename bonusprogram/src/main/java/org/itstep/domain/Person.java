@@ -35,7 +35,7 @@ public class Person implements UserDetails{
     @NotBlank
     @NonNull
     @Length(max = 20)
-    @Column(name = "phone", nullable = false)
+    @Column(name = "phone", nullable = false, unique=true)
     private String phone;
 
     @NotBlank

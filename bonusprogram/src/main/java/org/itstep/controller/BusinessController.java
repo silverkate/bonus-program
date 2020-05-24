@@ -1,5 +1,9 @@
 package org.itstep.controller;
 
+import org.itstep.domain.Transaction;
+import org.itstep.repositories.BusinessRepository;
+import org.itstep.repositories.TransactionRepository;
+import org.itstep.repositories.UserRepository;
 import org.itstep.service.TransactionService;
 import org.itstep.service.UserService;
 import org.itstep.service.dto.TransactionDto;
@@ -11,17 +15,26 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.data.domain.Pageable;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+
+import java.time.LocalDate;
 
 @Controller
 public class BusinessController {
     final UserService userService;
     final TransactionService transactionService;
+    final UserRepository userRepository;
+    final BusinessRepository businessRepository;
+    final TransactionRepository transactionRepository;
 
     @Autowired
-    public BusinessController(UserService userService, TransactionService transactionService) {
+    public BusinessController(UserService userService, TransactionService transactionService, UserRepository userRepository, BusinessRepository businessRepository, TransactionRepository transactionRepository) {
         this.userService = userService;
         this.transactionService = transactionService;
+        this.userRepository = userRepository;
+        this.businessRepository = businessRepository;
+        this.transactionRepository = transactionRepository;
     }
 
     @GetMapping(path = "/business/enter")
@@ -52,19 +65,56 @@ public class BusinessController {
         return "business/users";
     }
 
+    private String MSG = "";
+    private String BONUS = "";
+    private String FIN_SUM = "";
     @GetMapping(path = "/business/addTransaction")
-    public String addTransaction(){
+    public String addTransaction(Model model){
+        model.addAttribute("state", MSG);
+        model.addAttribute("bonus", BONUS);
+        model.addAttribute("fin_sum", FIN_SUM);
+        MSG = "";
+        BONUS = "";
+        FIN_SUM = "";
         return "business/addTransaction";
     }
 
     @PostMapping("/business/addTransaction")
-    public String register(Model model) {
+    public String submit(@ModelAttribute("phone") String phone,
+                           @ModelAttribute("dirty_sum") String initialSum,
+                           @ModelAttribute("bonus_ch") String bonus) {
         try{
-            System.out.println(model.getAttribute("dirty_sum")+"  "+model.getAttribute("bonus_ch"));
-            model.addAttribute("error", "Transaction was added!");
+            double finalSum = 0.0;
+            double allBonus = 0.0;
+
+            for (Transaction t:transactionRepository.findAll()) {
+                if(t.getUser().getId().equals(userRepository.findUserByPhone(phone).getId())){
+                    allBonus+=t.getAddedBonus();
+                    allBonus-=t.getChargedBonus();
+                }
+            }
+
+            if(bonus.equals("on")){
+                if(allBonus>=Double.parseDouble(initialSum)){
+                    allBonus = Double.parseDouble(initialSum) * 0.1;
+                }
+                finalSum = Double.parseDouble(initialSum) - allBonus;
+                TransactionDto dto = new TransactionDto(LocalDate.now(), Double.parseDouble(initialSum), Double.parseDouble(initialSum)*0.03, allBonus, finalSum,
+                        userRepository.findUserByPhone(phone), businessRepository.findById(1).get());
+                transactionService.save(dto);
+                BONUS = "ADDED BONUS: " + dto.getAddedBonus();
+            }else{
+                finalSum = Double.parseDouble(initialSum);
+                TransactionDto dto = new TransactionDto(LocalDate.now(), Double.parseDouble(initialSum), Double.parseDouble(initialSum)*0.03, 0.0, finalSum,
+                    userRepository.findUserByPhone(phone), businessRepository.findById(1).get());
+                transactionService.save(dto);
+                BONUS = "ADDED BONUS: " + dto.getAddedBonus();
+            }
+            FIN_SUM = "TO PAY: " + finalSum;
+            MSG ="transaction was added";
         }
         catch(Exception e){
-            model.addAttribute("error", "Transaction was NOT added!");
+            MSG =  "transaction was not added";
         }
         return "redirect:/business/addTransaction";
     }
