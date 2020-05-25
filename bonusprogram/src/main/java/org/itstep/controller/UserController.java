@@ -22,6 +22,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -54,7 +56,7 @@ public class UserController {
     public String account(Model model, Integer page, Integer size) {
         Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         List<Transaction> transactions = new ArrayList<>();
-        int bonus = 0;
+        double bonus = 0;
         if(principal instanceof UserDetails){
             String username = ((UserDetails)principal).getUsername();
             model.addAttribute("firstName", userRepository.findUserByPhone(username).getFirstName());
@@ -67,6 +69,9 @@ public class UserController {
                 }
             }
         }
+        BigDecimal bd = new BigDecimal(Double.toString(bonus));
+        bd = bd.setScale(2, RoundingMode.HALF_UP);
+        bonus = bd.doubleValue();
         model.addAttribute("transactions", transactions);
         model.addAttribute("bonus", bonus);
         return "user/account";
