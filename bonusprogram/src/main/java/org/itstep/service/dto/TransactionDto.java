@@ -23,15 +23,19 @@ public class TransactionDto {
 
     @NotBlank
     @NonNull
-    private Integer initialSum;
+    private Double initialSum;
 
     @NotBlank
     @NonNull
-    private Integer bonus;
+    private Double addedBonus;
 
     @NotBlank
     @NonNull
-    private Integer finalSum;
+    private Double chargedBonus;
+
+    @NotBlank
+    @NonNull
+    private Double finalSum;
 
     @NotBlank
     @NonNull

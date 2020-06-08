@@ -8,27 +8,27 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <link href="<spring:url value="/static/css/main.css"/>" rel="stylesheet"/>
 </head>
-<body>
+<body id = "u10">
 
 <form action="<spring:url value="login"/>" method="POST">
     <div>
-        <h4>Sign in</h4>
+        <h1>Войти</h1>
         <div>
-            <label>Phone<input name="login" required /></label>
+            <input name="login" placeholder = "Номер телефона" required />
         </div>
         <div>
-            <label>Password<input name="password"  required type="password"/></label>
+            <input name="password" placeholder = "Пароль" required type="password"/>
             <secure:csrfInput/>
         </div>
     </div>
     <div>
-        <a type="submit" href="<spring:url value="/"/>" >Cancel</a>
-        <button type="submit" href="<spring:url value="login"/>">Submit</button>
+        <a type="submit" href="<spring:url value="/"/>" >Отмена</a>
+        <button type="submit" href="<spring:url value="login"/>">Вход</button>
     </div>
 </form>
 <div>
     <div>
-        <a href="<spring:url value="/user/register"/>">Register</a>
+        <a href="<spring:url value="/user/register"/>">Регистрация</a>
     </div>
 </div>
 <div>

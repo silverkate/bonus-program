@@ -22,15 +22,19 @@ public class Transaction {
 
     @NonNull
     @Column(name = "initial_sum", nullable = false)
-    private Integer initialSum;
+    private Double initialSum;
 
     @NonNull
-    @Column(name = "bonus", nullable = false)
-    private Integer bonus;
+    @Column(name = "a_bonus", nullable = false)
+    private Double addedBonus;
+
+    @NonNull
+    @Column(name = "c_bonus", nullable = false)
+    private Double chargedBonus;
 
     @NonNull
     @Column(name = "final_sum", nullable = false)
-    private Integer finalSum;
+    private Double finalSum;
 
 
     @NonNull

@@ -2,39 +2,35 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="secure" uri="http://www.springframework.org/security/tags" %>
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
-<%@ page contentType="text/html;charset=UTF-8" language="java" isELIgnored="false" %>
-<html>
+<%@ page contentType="text/html;charset=UTF-8" language="java" isELIgnored="false" %><html>
 <head>
-    <title>Title</title>
+    <title>Добавление транзакции</title>
 
     <link href="<spring:url value="/static/css/main.css"/>" rel="stylesheet"/>
 </head>
-<body>
-<a type="submit" href="<spring:url value="/business/account"/>"><<</a>
+<body id = "u12">
+<a type="submit" href="<spring:url value="/business/account"/>" ><<</a>
 <form action="<spring:url value="addTransaction"/>" method="POST">
     <div>
-        <h4>Добавить транзакцию</h4>
+        <h1>Добавить транзакцию</h1>
+        <h4>${state}</h4>
         <div>
-            <label>Клиентский номер телефона<input name="phone" required/></label>
+            <input name="phone" placeholder="Клиентский номер телефона" required />
         </div>
         <div>
-            <label>Изначальная сумма<input id="dirty_sum" name="dirty_sum" required/></label>
+            <input id= "dirty_sum" name="dirty_sum" placeholder="Изначальная сумма" required />
         </div>
         <div>
-            <input type="checkbox" id="bonus_ch" name="bonus_ch"/>
-            <label for="bonus_ch">Списать бонусы?</label>
+            <label for = "bonus_ch">Списать бонусы <input type = "checkbox" id = "bonus_ch" class = "container" name = "bonus_ch"/></label>
         </div>
-        <div>
-            <label>Бонусы<input id="bonus" name="bonus" required/></label>
-        </div>
-        <div>
-            <label>Cумма к оплате<input name="sum" required/></label>
-        </div>
+
         <sec:csrfInput/>
-        <button type="submit" href="<spring:url value="addTransaction"/>">Submit</button>
+        <button type="submit" href="<spring:url value="addTransaction"/>">Добавить</button>
     </div>
+
     <div>
-        ${error}
+        <h4>${bonus}</h4>
+        <h4>${fin_sum}</h4>
     </div>
 </form>
 </body>

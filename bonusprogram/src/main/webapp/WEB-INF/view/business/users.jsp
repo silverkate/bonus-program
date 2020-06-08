@@ -10,8 +10,8 @@
 </head>
 <body>
 <a type="submit" href="<spring:url value="/business/account"/>" ><<</a>
-<div>
-    <table>
+<div class="table-wrapper">
+    <table class="fl-table">
         <thead>
         <tr>
             <th>Id</th>

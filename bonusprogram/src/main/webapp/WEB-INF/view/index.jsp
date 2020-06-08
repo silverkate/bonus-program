@@ -24,7 +24,7 @@
     <div id="u3" class="ax_default heading_1">
         <div id="u3_div" class=""></div>
         <div id="u3_text" class="text ">
-            <p><span>Take your bonus!</span></p>
+            <p><span>Заберите Ваш бонус!</span></p>
         </div>
     </div>
 

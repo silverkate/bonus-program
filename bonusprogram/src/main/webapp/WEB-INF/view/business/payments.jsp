@@ -10,27 +10,30 @@
 </head>
 <body>
 <a type="submit" href="<spring:url value="/business/account"/>" ><<</a>
-<div>
-    <table>
+<div class="table-wrapper">
+    <table class="fl-table">
         <thead>
         <tr>
             <th>Id</th>
-            <th>Sum (оплаты)</th>
-            <th>Bonus (добавленный)</th>
-            <th>User phone</th>
+            <th>Оплаченная сумма</th>
+            <th>Добавленный бонус</th>
+            <th>Списанный бонус</th>
+            <th>Номер телефона</th>
         </tr>
         </thead>
         <tbody>
         <c:forEach items="${transactions}" var="t">
-            <tr>
-                <td>${t.id}</td>
-                <td>${t.finalSum}</td>
-                <td>${t.bonus}</td>
-                <td>${t.user.phone}</td>
-            </tr>
+        <tr>
+            <td>${t.id}</td>
+            <td>${t.finalSum}</td>
+            <td>${t.addedBonus}</td>
+            <td>${t.chargedBonus}</td>
+            <td>${t.user.phone}</td>
+        </tr>
         </c:forEach>
-        </tbody>
+        <tbody>
     </table>
 </div>
+
 </body>
 </html>

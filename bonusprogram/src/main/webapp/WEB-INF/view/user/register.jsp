@@ -6,32 +6,34 @@
 <html>
 <head>
     <title>User Register</title>
+
+    <link href="<spring:url value="/static/css/main.css"/>" rel="stylesheet"/>
 </head>
-<body>
+<body id = "u11">
 <form action="<spring:url value="register"/>" method="POST">
     <div>
-        <h4>Register</h4>
+        <h4>Регистрация</h4>
         <div>
-            <label>Name<input name="firstName" required /></label>
+            <input name="firstName" placeholder="Имя" required />
         </div>
         <div>
-            <label>Last Name<input name="lastName" required /></label>
+            <input name="lastName" placeholder="Фамилия" required />
         </div>
         <div>
-            <label>Phone<input type="tel" name="phone" pattern="[0-9]{10}" required /></label>
+            <input type="tel" name="phone" placeholder = "Номер телефона" pattern="[0-9]{10}" required />
         </div>
         <div>
-            <label>Email<input name="email" required /></label>
+            <input name="email" placeholder="e-mail" required />
         </div>
         <div>
-            <label>Password<input name="password"  required type="password"/></label>
+            <input name="password" placeholder="Пароль" required type="password"/>
             <secure:csrfInput/>
         </div>
 
     </div>
     <div>
-        <a type="submit" href="<spring:url value="/"/>" >Cancel</a>
-        <button type="submit" href="<spring:url value="register"/>">Register</button>
+        <a type="submit" href="<spring:url value="/user/enter"/>" >Отмена</a>
+        <button type="submit" href="<spring:url value="register"/>">Регистрация</button>
     </div>
 </form>
 </body>

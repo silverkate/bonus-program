@@ -1,6 +1,7 @@
 package org.itstep.service.impl;
 
 import lombok.extern.slf4j.Slf4j;
+import org.itstep.domain.Person;
 import org.itstep.domain.Transaction;
 import org.itstep.repositories.TransactionRepository;
 import org.itstep.service.TransactionService;
@@ -30,7 +31,8 @@ public class TransactionServiceImpl implements TransactionService {
     @Override
     public TransactionDto save(TransactionDto dto) {
         log.debug("Request to save Transaction : {}", dto);
-        Transaction transaction = transactionMapper.toEntity(dto);
+        Transaction transaction = new Transaction(null, dto.getDate(), dto.getInitialSum(), dto.getAddedBonus(), dto.getChargedBonus(), dto.getFinalSum(),
+                dto.getUser(), dto.getBusiness());
         transaction = transactionRepository.save(transaction);
         return transactionMapper.toDto(transaction);
     }
@@ -38,10 +40,10 @@ public class TransactionServiceImpl implements TransactionService {
     @Override
     public Page<TransactionDto> findAll(Pageable pageable) {
         log.debug("Request to get all Transactions");
+
         return transactionRepository.findAll(pageable)
                 .map(transactionMapper::toDto);
     }
-
 
     @Override
     public Optional<TransactionDto> findOne(Integer id) {
@@ -55,4 +57,5 @@ public class TransactionServiceImpl implements TransactionService {
         log.debug("Request to delete Transaction : {}", id);
         transactionRepository.deleteById(id);
     }
+    
 }

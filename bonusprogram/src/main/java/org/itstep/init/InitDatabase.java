@@ -61,22 +61,19 @@ public class InitDatabase {
         UserDto userDto = new UserDto("Name", "LastName", "0990909909", "email@gmail.com", "pass");
         userDto.setRole("ROLE_USER");
         securityService.register(userDto);
-        userService.save(userDto);
+
         // Init business
         BusinessDto businessDto = new BusinessDto("displayName", "officialName", "0909990909", "CEOName", "email@email.com", "kindOfActivity", "code1", "code2", "account", "pass");
         businessDto.setRole("ROLE_BUSINESS");
         securityService.registerBusiness(businessDto);
-        businessService.save(businessDto);
 
         //Init transactions
-        TransactionDto transactionDto1 = new TransactionDto(LocalDate.now(), 100, 5, 100,
-                userMapper.toEntity(userDto), businessMapper.toEntity(businessDto));
-        Transaction transaction = new Transaction(null, LocalDate.now(), 100, 5, 100,
+        TransactionDto transactionDto1 = new TransactionDto(LocalDate.now(), 100.0, 5.0, 0.0, 100.0,
+                userRepository.findById(1).get(), businessRepository.findById(1).get());
+        Transaction transaction = new Transaction(null, LocalDate.now(), 100.0, 0.0, 5.0, 100.0,
                 userRepository.findById(1).get(), businessRepository.findById(1).get());
         transactionRepository.save(transaction);
-//        TransactionDto transactionDto2 = new TransactionDto(LocalDate.now(), 100, 5, 95, userMapper.toEntity(userDto), businessMapper.toEntity(businessDto));
-        //transactionService.save(transactionDto1);
-//        transactionService.save(transactionDto2);
+        transactionService.save(transactionDto1);
 
         inited = true;
     }
