@@ -12,28 +12,28 @@
 <body id = "u11">
 <form action="<spring:url value="register"/>" method="POST">
     <div>
-        <h4>Register</h4>
+        <h4>Регистрация</h4>
         <div>
-            <input name="firstName" placeholder="Name" required />
+            <input name="firstName" placeholder="Имя" required />
         </div>
         <div>
-            <input name="lastName" placeholder="Last Name" required />
+            <input name="lastName" placeholder="Фамилия" required />
         </div>
         <div>
-            <input type="tel" name="phone" placeholder = "Phone"pattern="[0-9]{10}" required />
+            <input type="tel" name="phone" placeholder = "Номер телефона" pattern="[0-9]{10}" required />
         </div>
         <div>
             <input name="email" placeholder="e-mail" required />
         </div>
         <div>
-            <input name="password" placeholder="Password" required type="password"/>
+            <input name="password" placeholder="Пароль" required type="password"/>
             <secure:csrfInput/>
         </div>
 
     </div>
     <div>
-        <a type="submit" href="<spring:url value="/user/enter"/>" >Cancel</a>
-        <button type="submit" href="<spring:url value="register"/>">Register</button>
+        <a type="submit" href="<spring:url value="/user/enter"/>" >Отмена</a>
+        <button type="submit" href="<spring:url value="register"/>">Регистрация</button>
     </div>
 </form>
 </body>

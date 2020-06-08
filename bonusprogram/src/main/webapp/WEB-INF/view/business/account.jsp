@@ -11,7 +11,7 @@
 <body id = "u13">
 <form id = "u14" action="<spring:url value="/logout"/>" method="POST">
     <div>
-        <button type="submit" href="<spring:url value="/logout"/>" >Log Out</button>
+        <button type="submit" href="<spring:url value="/logout"/>" >Выйти</button>
         <secure:csrfInput/>
     </div>
 </form>

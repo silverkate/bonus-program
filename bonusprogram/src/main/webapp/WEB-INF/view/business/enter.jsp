@@ -12,18 +12,18 @@
 <body id="u9">
 <form action="<spring:url value="login"/>" method="POST">
     <div>
-        <h1>Sign in</h1>
+        <h1>Вход</h1>
         <div>
-            <input name="login" placeholder = "Phone" required />
+            <input name="login" placeholder = "Номер телефона" required />
         </div>
         <div>
-            <input name="password" placeholder = "Password" required type="password"/>
+            <input name="password" placeholder = "Пароль" required type="password"/>
             <secure:csrfInput/>
         </div>
     </div>
     <div>
-        <a type="submit" href="<spring:url value="/"/>" >Cancel</a>
-        <button type="submit" href="<spring:url value="login"/>">Submit</button>
+        <a type="submit" href="<spring:url value="/"/>" >Отмена</a>
+        <button type="submit" href="<spring:url value="login"/>">Вход</button>
     </div>
 </form>
 

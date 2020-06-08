@@ -12,13 +12,13 @@
 <div>
     <form action="<spring:url value="/logout"/>" method="POST">
         <div>
-            <button type="submit" href="<spring:url value="/logout"/>" >Log Out</button>
+            <button type="submit" href="<spring:url value="/logout"/>" >Выйти</button>
             <secure:csrfInput/>
         </div>
     </form>
 </div>
 <div>
-    <h4>Welcome, ${firstName}</h4>
+    <h4>Добро пожаловать, ${firstName}</h4>
     <h4>Бонусы ${bonus}</h4>
 </div>
 <div class="table-wrapper">
