@@ -1,5 +1,6 @@
 package org.itstep.controller;
 
+import org.itstep.domain.Person;
 import org.itstep.domain.Transaction;
 import org.itstep.repositories.BusinessRepository;
 import org.itstep.repositories.TransactionRepository;
@@ -19,6 +20,8 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 @Controller
 public class BusinessController {
@@ -49,18 +52,24 @@ public class BusinessController {
 
     @GetMapping(path = "/business/payments")
     public String payments(Model model, Integer page, Integer size){
-        Pageable pageable = PageRequest.of(page == null ? 0 : page, size == null ? 5 : size);
+        /*Pageable pageable = PageRequest.of(page == null ? 0 : page, size == null ? 10 : size);
         Page<TransactionDto> transactionDtoPage = transactionService.findAll(pageable);
-        model.addAttribute("transactions", transactionDtoPage.getContent());
+        model.addAttribute("transactions", transactionDtoPage.getContent());*/
+        List<Transaction> transactions = new ArrayList<>();
+        transactions.addAll(transactionRepository.findAll());
+        model.addAttribute("transactions", transactions);
         //model.addAttribute("page", transactionDtoPage);
         return "business/payments";
     }
 
     @GetMapping(path = "/business/users")
     public String users(Model model, Integer page, Integer size){
-        Pageable pageable = PageRequest.of(page == null ? 0 : page, size == null ? 5 : size);
+       /*Pageable pageable = PageRequest.of(page == null ? 0 : page, size == null ? 10 : size);
         Page<UserDto> userDtoPage = userService.findAll(pageable);
-        model.addAttribute("users", userDtoPage.getContent());
+        model.addAttribute("users", userDtoPage.getContent());*/
+        List<Person> users = new ArrayList<>();
+        users.addAll(userRepository.findAll());
+        model.addAttribute("users", users);//userDtoPage.getContent());
         //model.addAttribute("page", userDtoPage);
         return "business/users";
     }
