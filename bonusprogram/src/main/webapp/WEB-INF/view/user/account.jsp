@@ -25,7 +25,6 @@
     <table class="fl-table">
         <thead>
         <tr>
-            <th></th>
             <th>Дата</th>
             <th>Сумма</th>
             <th>Добавленный бонус</th>
@@ -35,7 +34,6 @@
         <tbody>
         <c:forEach items="${transactions}" var="t">
             <tr>
-                <td>${t.id}</td>
                 <td>${t.date}</td>
                 <td>${t.finalSum}</td>
                 <td>${t.addedBonus}</td>
